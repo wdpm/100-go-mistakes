@@ -35,3 +35,15 @@ func BenchmarkConvert_GivenLength(b *testing.B) {
 	}
 	global = local
 }
+
+// goos: windows
+// goarch: amd64
+// pkg: github.com/teivah/100-go-mistakes/03-data-types/21-slice-init
+// cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BenchmarkConvert_EmptySlice
+// BenchmarkConvert_EmptySlice-8                384           3719491 ns/op
+// BenchmarkConvert_GivenCapacity
+// BenchmarkConvert_GivenCapacity-8            1351            854595 ns/op
+// BenchmarkConvert_GivenLength
+// BenchmarkConvert_GivenLength-8              3436            391359 ns/op
+// PASS

@@ -1,5 +1,6 @@
 package store
 
+// CustomerStorage a complete implementation on server side
 type CustomerStorage interface {
 	StoreCustomer(customer Customer) error
 	GetCustomer(id string) (Customer, error)

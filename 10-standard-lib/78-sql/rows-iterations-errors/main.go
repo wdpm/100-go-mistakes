@@ -56,6 +56,9 @@ func get2(ctx context.Context, db *sql.DB, id string) (string, int, error) {
 			return "", 0, err
 		}
 	}
+	// because rows.Next can stop either when we
+	// have iterated over all the rows or when an error happens while preparing the next
+	// row, we should check rows.Err following the iteration
 	if err := rows.Err(); err != nil {
 		return "", 0, err
 	}

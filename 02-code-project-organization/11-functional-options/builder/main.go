@@ -50,6 +50,7 @@ func client() error {
 		return err
 	}
 
+	// 这里即使要使用默认 cfg，也必须传一个 nil
 	server, err := NewServer("localhost", cfg)
 	if err != nil {
 		return err

@@ -14,12 +14,15 @@ func consumeMessages() {
 }
 
 func getMessageType(msg []byte) []byte {
+	// The slicing operation on msg using msg[:5] creates a five-length slice. However, its
+	// capacity remains the same as the initial slice.
 	return msg[:5]
 }
 
 func getMessageTypeWithCopy(msg []byte) []byte {
 	msgType := make([]byte, 5)
 	copy(msgType, msg)
+	// here msgType is better for memory-wise
 	return msgType
 }
 

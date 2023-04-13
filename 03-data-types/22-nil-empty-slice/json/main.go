@@ -27,3 +27,6 @@ type customer struct {
 	ID         string
 	Operations []float32
 }
+
+// {"ID":"foo","Operations":null}
+// {"ID":"bar","Operations":[]}

@@ -12,6 +12,7 @@ func (c *IntConfig) Set(value int) {
 	c.value = value
 }
 
+// read-only mode
 type intConfigGetter interface {
 	Get() int
 }

@@ -32,7 +32,7 @@ func NewServer(addr string, opts ...Option) (*http.Server, error) {
 		}
 	}
 
-	// At this stage, the options struct is built and contains the config
+	// At this stage, the options' struct is built and contains the config
 	// Therefore, we can implement our logic related to port configuration
 	var port int
 	if options.port == nil {

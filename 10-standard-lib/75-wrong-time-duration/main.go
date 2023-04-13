@@ -7,10 +7,11 @@ import (
 
 func main() {
 	listing1()
-	//listing2()
+	// listing2()
 }
 
 func listing1() {
+	// 1000 nanoseconds = 1 microseconds = 0.001 milliseconds
 	ticker := time.NewTicker(1000)
 	for {
 		select {

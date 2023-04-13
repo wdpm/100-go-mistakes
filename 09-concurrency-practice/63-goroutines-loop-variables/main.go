@@ -12,6 +12,7 @@ func listing1() {
 	}
 }
 
+// work
 func listing2() {
 	s := []int{1, 2, 3}
 
@@ -23,6 +24,7 @@ func listing2() {
 	}
 }
 
+// work
 func listing3() {
 	s := []int{1, 2, 3}
 

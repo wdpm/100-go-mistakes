@@ -28,6 +28,8 @@ func writeToFile1(filename string, content []byte) (err error) {
 
 	defer func() {
 		closeErr := f.Close()
+		// Returns the close error
+		// if the write succeeds
 		if err == nil {
 			err = closeErr
 		}
@@ -52,5 +54,8 @@ func writeToFile2(filename string, content []byte) (err error) {
 		return err
 	}
 
+	// force a flush to disk
+	// This example is a synchronous write function. It ensures that the content is written to
+	// disk before returning. But its downside is an impact on performance
 	return f.Sync()
 }

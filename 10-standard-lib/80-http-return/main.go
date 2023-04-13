@@ -6,6 +6,7 @@ func handler1(w http.ResponseWriter, req *http.Request) {
 	err := foo(req)
 	if err != nil {
 		http.Error(w, "foo", http.StatusInternalServerError)
+		// here should return !
 	}
 
 	_, _ = w.Write([]byte("all good"))

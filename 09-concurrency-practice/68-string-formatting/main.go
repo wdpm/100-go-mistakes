@@ -18,11 +18,14 @@ type Customer struct {
 	age   int
 }
 
+// bad
 func (c *Customer) UpdateAge1(age int) error {
 	c.mutex.Lock()
 	defer c.mutex.Unlock()
 
 	if age < 0 {
+		// %v
+		// here String() leads to deadlock
 		return fmt.Errorf("age should be positive for customer %v", c)
 	}
 
@@ -30,6 +33,7 @@ func (c *Customer) UpdateAge1(age int) error {
 	return nil
 }
 
+// good
 func (c *Customer) UpdateAge2(age int) error {
 	if age < 0 {
 		return fmt.Errorf("age should be positive for customer %v", c)
@@ -42,11 +46,13 @@ func (c *Customer) UpdateAge2(age int) error {
 	return nil
 }
 
+// same with UpdateAge1
 func (c *Customer) UpdateAge3(age int) error {
 	c.mutex.Lock()
 	defer c.mutex.Unlock()
 
 	if age < 0 {
+		// no deadlock, log data directly
 		return fmt.Errorf("age should be positive for customer id %s", c.id)
 	}
 

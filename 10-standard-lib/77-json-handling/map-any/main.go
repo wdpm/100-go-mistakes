@@ -15,3 +15,10 @@ func listing1() error {
 func getMessage() []byte {
 	return nil
 }
+
+// {
+// "id": 32,
+// "name": "foo"
+// }
+
+// id => float64

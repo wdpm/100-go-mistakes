@@ -5,6 +5,7 @@ import "fmt"
 func main() {
 	s := &Struct{id: "foo"}
 	defer s.print()
+	// bar
 	s.id = "bar"
 }
 

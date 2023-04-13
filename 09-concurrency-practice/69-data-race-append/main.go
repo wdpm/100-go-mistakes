@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+func main() {
+	listing1()
+}
+
 func listing1() {
 	s := make([]int, 1)
 
@@ -17,6 +21,8 @@ func listing1() {
 }
 
 func listing2() {
+	// We create a slice with make([]int, 0, 1). Therefore, the array isn’t full. Both goroutines
+	// attempt to update the same index of the backing array (index 1), which is a data race.
 	s := make([]int, 0, 1)
 
 	go func() {

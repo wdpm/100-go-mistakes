@@ -32,6 +32,9 @@ func (h handler) getBody2() (string, error) {
 	}
 
 	defer func() {
+		// GC
+		// On the server side, while implementing an HTTP handler, we aren’t
+		// required to close the request body because the server does this automatically.
 		err := resp.Body.Close()
 		if err != nil {
 			log.Printf("failed to close response: %v\n", err)
@@ -48,6 +51,7 @@ func (h handler) getStatusCode1(body io.Reader) (int, error) {
 	}
 
 	defer func() {
+		// close body event if we don't read body
 		err := resp.Body.Close()
 		if err != nil {
 			log.Printf("failed to close response: %v\n", err)
@@ -70,6 +74,8 @@ func (h handler) getStatusCode2(body io.Reader) (int, error) {
 		}
 	}()
 
+	// Therefore, if getStatusCode is called repeatedly and we want to use keep-alive con-
+	// nections, we should read the body even though we aren’t interested in it
 	_, _ = io.Copy(io.Discard, resp.Body)
 
 	return resp.StatusCode, nil

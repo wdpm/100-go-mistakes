@@ -18,3 +18,7 @@ func main() {
 	err := redis.Store("foo", "bar")
 	_ = err
 }
+
+// redis
+// init 1
+// init 2

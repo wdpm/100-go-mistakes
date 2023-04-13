@@ -40,6 +40,7 @@ func MultiplyInt(a, b int) int {
 	if a == 1 || b == 1 {
 		return result
 	}
+	// why this case will overflow?
 	if a == math.MinInt || b == math.MinInt {
 		panic("integer overflow")
 	}

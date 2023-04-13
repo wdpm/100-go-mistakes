@@ -17,6 +17,7 @@ func listing2() {
 	fmt.Println(i)
 }
 
+// variable increment < channel send < channel receive < variable read
 func listing3() {
 	i := 0
 	ch := make(chan struct{})
@@ -41,6 +42,7 @@ func listing4() {
 
 func listing5() {
 	i := 0
+	// use buffered channel
 	ch := make(chan struct{}, 1)
 	go func() {
 		i = 1
@@ -48,6 +50,7 @@ func listing5() {
 	}()
 	ch <- struct{}{}
 	fmt.Println(i)
+	// 0
 }
 
 func listing6() {
@@ -59,4 +62,10 @@ func listing6() {
 	}()
 	ch <- struct{}{}
 	fmt.Println(i)
+	// 1
+}
+
+func main() {
+	listing5()
+	// listing6()
 }

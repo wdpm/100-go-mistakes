@@ -19,8 +19,8 @@ func main() {
 }
 
 type Event1 struct {
-	ID int
-	time.Time
+	ID        int
+	time.Time // embedded field
 }
 
 func listing1() error {
@@ -34,7 +34,16 @@ func listing1() error {
 		return err
 	}
 
+	// We have to know that time.Time implements the json.Marshaler interface. Because
+	// time.Time is an embedded field of Event, the compiler promotes its methods. There-
+	// fore, Event also implements json.Marshaler.
+
+	// Consequently, passing an Event to json.Marshal uses the marshaling behavior
+	// provided by time.Time instead of the default behavior. This is why marshaling an
+	// Event leads to ignoring the ID field.
+
 	fmt.Println(string(b))
+	// "2023-04-12T19:50:48.1334837+08:00"
 	return nil
 }
 

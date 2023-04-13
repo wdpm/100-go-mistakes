@@ -41,6 +41,7 @@ func read2(r io.Reader) (int, error) {
 	for i := 0; i < n; i++ {
 		go func() {
 			defer wg.Done()
+			// get work from shared channel
 			for b := range ch {
 				v := task(b)
 				atomic.AddInt64(&count, int64(v))
@@ -48,6 +49,7 @@ func read2(r io.Reader) (int, error) {
 		}()
 	}
 
+	// publish work
 	for {
 		b := make([]byte, 1024)
 		_, err := r.Read(b)

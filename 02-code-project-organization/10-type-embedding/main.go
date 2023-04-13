@@ -36,9 +36,16 @@ func (i *InMem) Get(key string) (int, bool) {
 }
 
 type Logger struct {
+	// using field writeCloser
 	writeCloser io.WriteCloser
 }
 
+// type Logger struct {
+//     // using embedded
+// 	io.WriteCloser
+// }
+
+// simple forward
 func (l Logger) Write(p []byte) (int, error) {
 	return l.writeCloser.Write(p)
 }

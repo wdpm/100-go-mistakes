@@ -9,6 +9,9 @@ func readFiles1(ch <-chan string) error {
 			return err
 		}
 
+		// In this case, the defer
+		// calls are executed not during each loop iteration but when the readFiles1 function
+		// returns
 		defer file.Close()
 
 		// Do something with file
@@ -16,6 +19,7 @@ func readFiles1(ch <-chan string) error {
 	return nil
 }
 
+// recommended practice
 func readFiles2(ch <-chan string) error {
 	for path := range ch {
 		if err := readFile(path); err != nil {
@@ -39,6 +43,8 @@ func readFile(path string) error {
 
 func readFiles3(ch <-chan string) error {
 	for path := range ch {
+		// For performance: get rid of defer and
+		// handle the defer call manually before looping
 		err := func() error {
 			file, err := os.Open(path)
 			if err != nil {
@@ -50,9 +56,13 @@ func readFiles3(ch <-chan string) error {
 			// Do something with file
 			return nil
 		}()
+
 		if err != nil {
 			return err
 		}
 	}
 	return nil
 }
+
+// When using defer, we must remember that it schedules a function call when the
+// surrounding function returns.

@@ -21,6 +21,7 @@ func f1(n int) float64 {
 	return result
 }
 
+// more accurate
 func f2(n int) float64 {
 	result := 0.
 	for i := 0; i < n; i++ {

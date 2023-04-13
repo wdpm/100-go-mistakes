@@ -1,6 +1,7 @@
-package races
+package main
 
 import (
+	"fmt"
 	"sync"
 	"sync/atomic"
 )
@@ -17,6 +18,7 @@ func listing1() {
 	}()
 }
 
+// use atomic value
 func listing2() {
 	var i int64
 
@@ -46,6 +48,7 @@ func listing3() {
 	}()
 }
 
+// use chan
 func listing4() {
 	i := 0
 	ch := make(chan int)
@@ -62,6 +65,7 @@ func listing4() {
 	i += <-ch
 }
 
+// use mutex
 func listing5() {
 	i := 0
 	mutex := sync.Mutex{}
@@ -78,5 +82,12 @@ func listing5() {
 		i = 2
 	}()
 
+	//  1 or 2, non-deterministic
+	fmt.Println(i)
+
 	_ = i
+}
+
+func main() {
+	listing5()
 }

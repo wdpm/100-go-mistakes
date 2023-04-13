@@ -33,6 +33,7 @@ func main() {
 	var cust31 any = customer2{id: "x", operations: []float64{1.}}
 	var cust32 any = customer2{id: "x", operations: []float64{1.}}
 	fmt.Println(cust31 == cust32)
+	// panic
 
 	cust41 := customer2{id: "x", operations: []float64{1.}}
 	cust42 := customer2{id: "x", operations: []float64{1.}}

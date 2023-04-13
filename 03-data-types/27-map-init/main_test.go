@@ -27,3 +27,8 @@ func BenchmarkMapWithSize(b *testing.B) {
 	}
 	global = local
 }
+
+// BenchmarkMapWithoutSize
+// BenchmarkMapWithoutSize-8              7         143924043 ns/op
+// BenchmarkMapWithSize
+// BenchmarkMapWithSize-8                15          80116380 ns/op

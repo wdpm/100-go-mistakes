@@ -23,3 +23,6 @@ func checkWriteHeaderCode(code int) {
 		panic(fmt.Sprintf("invalid WriteHeader code %v", code))
 	}
 }
+
+// a
+// recover foo

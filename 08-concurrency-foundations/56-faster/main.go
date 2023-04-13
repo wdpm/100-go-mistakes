@@ -78,6 +78,8 @@ func merge(s []int, middle int) {
 	current := 0
 	high := len(s) - 1
 
+	// Left index: 0...middle-1
+	// Right index: middle...high
 	for helperLeft <= middle-1 && helperRight <= high {
 		if helper[helperLeft] <= helper[helperRight] {
 			s[current] = helper[helperLeft]

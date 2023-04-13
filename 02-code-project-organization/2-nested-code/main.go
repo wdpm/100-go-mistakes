@@ -23,6 +23,7 @@ func join1(s1, s2 string, max int) (string, error) {
 	}
 }
 
+// 将代码打平，及早退出，避免嵌套层级
 func join2(s1, s2 string, max int) (string, error) {
 	if s1 == "" {
 		return "", errors.New("s1 is empty")

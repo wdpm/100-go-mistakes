@@ -31,7 +31,8 @@ func listing2(db *sql.DB, id string) error {
 	// Defer closing rows
 
 	var (
-		department *string
+		// By doing so, if the value is NULL, department will be nil
+		department *string // pointer
 		age        int
 	)
 	for rows.Next() {
@@ -52,6 +53,7 @@ func listing3(db *sql.DB, id string) error {
 	// Defer closing rows
 
 	var (
+		// use sql.NullString
 		department sql.NullString
 		age        int
 	)

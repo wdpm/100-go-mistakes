@@ -29,6 +29,9 @@ func (c *Cache) AddBalance(id string, balance float64) {
 
 func (c *Cache) AverageBalance1() float64 {
 	c.mu.RLock()
+	// The new variable, whether a map or a slice, is
+	// backed by the same data set.
+	// same referencing, => data race
 	balances := c.balances
 	c.mu.RUnlock()
 
@@ -41,6 +44,8 @@ func (c *Cache) AverageBalance1() float64 {
 
 func (c *Cache) AverageBalance2() float64 {
 	c.mu.RLock()
+	// If the iteration operation isn’t heavy (that’s the case here, as we perform an incre-
+	// ment operation), we should protect the whole function
 	defer c.mu.RUnlock()
 
 	sum := 0.
@@ -52,6 +57,7 @@ func (c *Cache) AverageBalance2() float64 {
 
 func (c *Cache) AverageBalance3() float64 {
 	c.mu.RLock()
+	// deep copy
 	m := make(map[string]float64, len(c.balances))
 	for k, v := range c.balances {
 		m[k] = v

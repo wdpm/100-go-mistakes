@@ -8,6 +8,7 @@ import (
 func listing1() error {
 	var client *http.Client
 	if tracing {
+		// variable shadow
 		client, err := createClientWithTracing()
 		if err != nil {
 			return err
@@ -32,6 +33,7 @@ func listing2() error {
 		if err != nil {
 			return err
 		}
+		// assign temp var to outer var
 		client = c
 	} else {
 		c, err := createDefaultClient()
@@ -46,9 +48,11 @@ func listing2() error {
 }
 
 func listing3() error {
+	// define two vars
 	var client *http.Client
 	var err error
 	if tracing {
+		// assignment
 		client, err = createClientWithTracing()
 		if err != nil {
 			return err
@@ -72,6 +76,8 @@ func listing4() error {
 	} else {
 		client, err = createDefaultClient()
 	}
+
+	// 这里对比listing 3 将公有的代码块提取出来
 	if err != nil {
 		return err
 	}

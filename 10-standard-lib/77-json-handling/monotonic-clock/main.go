@@ -28,12 +28,14 @@ func listing1() error {
 	}
 
 	fmt.Println(event1 == event2)
+	fmt.Println(event1.Time.Equal(event2.Time))
 	return nil
 }
 
 func listing2() error {
 	t := time.Now()
 	event1 := Event{
+		// strips the monotonic clock reading in t.
 		Time: t.Truncate(0),
 	}
 
@@ -50,4 +52,8 @@ func listing2() error {
 
 	fmt.Println(event1 == event2)
 	return nil
+}
+
+func main() {
+	listing1()
 }
