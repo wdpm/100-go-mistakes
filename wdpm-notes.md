@@ -25,3 +25,21 @@ expressed with a chan struct{} type. This way, it clarifies for receivers that t
 shouldn’t expect any meaning from a message’s content—only the fact that they have
 received a message. In Go, such channels are called notification channels.
 ```
+
+```
+Make it correct, make it clear, make it concise, make it fast, in that order.
+```
+
+we can use GOGC to configure when the next GC cycle is triggered
+
+```
+A solution for today is to rely on a library made by Uber called automaxprocs
+(github.com/uber-go/automaxprocs). We can use this library by adding a blank
+import to go.uber.org/automaxprocs in main.go; it will automatically set GOMAX-
+PROCS to match the Linux container CPU quota. 
+
+let’s remember that currently, Go isn’t CFS-aware. GOMAXPROCS is based
+on the host machine rather than on the defined CPU limits. Consequently, we can
+reach a state where the CPU is throttled, leading to long pauses and substantial effects
+such as a significant latency increase
+```

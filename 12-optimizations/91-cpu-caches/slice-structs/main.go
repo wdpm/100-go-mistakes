@@ -25,3 +25,14 @@ func sumBar(bar Bar) int64 {
 	}
 	return total
 }
+
+// goos: windows
+// goarch: amd64
+// pkg: github.com/teivah/100-go-mistakes/12-optimizations/91-cpu-caches/slice-stru
+// cts
+// cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BenchmarkSumFoo
+// BenchmarkSumFoo-8            633           1821214 ns/op
+// BenchmarkSumBar
+// BenchmarkSumBar-8            782           1290387 ns/op
+// PASS

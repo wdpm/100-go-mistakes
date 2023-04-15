@@ -11,6 +11,7 @@ func (c *cache) get1(bytes []byte) (v int, contains bool) {
 }
 
 func (c *cache) get2(bytes []byte) (v int, contains bool) {
+	// use string(bytes) as direct key
 	v, contains = c.m[string(bytes)]
 	return
 }

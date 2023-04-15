@@ -38,10 +38,20 @@ func readAll(r io.Reader, retries int) ([]byte, error) {
 	b := make([]byte, 0, 512)
 	for {
 		if len(b) == cap(b) {
+			// 这里强制创建一个新的背后array来作为slice，并复制以前的切片数据。
+			// 保证b容量足够大
 			b = append(b, 0)[:len(b)]
+			// 	len= 512 cap = 512x2
+			// 	...
 		}
+		// here: len(b) < cap(b)
+		// start index: len(b) 是为了不覆盖之前已读取的任何buffer的数据
+		// first turn：0...512 bytes
+		// second turn:
 		n, err := r.Read(b[len(b):cap(b)])
+		// n 包含读入 b 的字节数
 		b = b[:len(b)+n]
+
 		if err != nil {
 			if err == io.EOF {
 				return b, nil

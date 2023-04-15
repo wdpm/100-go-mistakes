@@ -29,3 +29,15 @@ func BenchmarkCount2(b *testing.B) {
 	}
 	globalResult2 = local
 }
+
+// goos: windows
+// goarch: amd64
+// pkg: github.com/teivah/100-go-mistakes/12-optimizations/92-false-sharing
+// cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BenchmarkCount1
+// BenchmarkCount1-8            250           4843512 ns/op
+// BenchmarkCount2
+// BenchmarkCount2-8            343           3106608 ns/op
+// PASS
+
+// 343/250=1.372 => 40% faster

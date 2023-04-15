@@ -1,7 +1,7 @@
 package main
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -10,6 +10,7 @@ import (
 )
 
 func TestHandler(t *testing.T) {
+	// client side
 	req := httptest.NewRequest(http.MethodGet, "http://localhost",
 		strings.NewReader("foo"))
 	w := httptest.NewRecorder()
@@ -19,7 +20,7 @@ func TestHandler(t *testing.T) {
 		t.Errorf("api version: expected 1.0, got %s", got)
 	}
 
-	body, _ := ioutil.ReadAll(w.Body)
+	body, _ := io.ReadAll(w.Body)
 	if got := string(body); got != "hello foo" {
 		t.Errorf("body: expected hello foo, got %s", got)
 	}
@@ -30,6 +31,7 @@ func TestHandler(t *testing.T) {
 }
 
 func TestDurationClientGet(t *testing.T) {
+	// server side
 	srv := httptest.NewServer(
 		http.HandlerFunc(
 			func(w http.ResponseWriter, r *http.Request) {

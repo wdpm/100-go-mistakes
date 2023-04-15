@@ -30,6 +30,7 @@ func TestCustomer2(t *testing.T) {
 
 func createCustomer2(t *testing.T, someArg string) Customer {
 	customer, err := customerFactory(someArg)
+	// handle error internally
 	if err != nil {
 		t.Fatal(err)
 	}

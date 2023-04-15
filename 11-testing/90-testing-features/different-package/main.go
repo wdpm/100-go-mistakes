@@ -2,6 +2,7 @@ package counter
 
 import "sync/atomic"
 
+// unexported
 var count uint64
 
 func Inc() uint64 {

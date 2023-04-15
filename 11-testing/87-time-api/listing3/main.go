@@ -15,6 +15,7 @@ type Event struct {
 	Data      string
 }
 
+// TrimOlderThan we can ask clients to provide the current time
 func (c *Cache) TrimOlderThan(now time.Time, since time.Duration) {
 	c.mu.RLock()
 	defer c.mu.RUnlock()

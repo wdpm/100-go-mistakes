@@ -5,6 +5,7 @@ import (
 	"sync"
 )
 
+// object pool
 var pool = sync.Pool{
 	New: func() any {
 		return make([]byte, 1024)
@@ -13,7 +14,7 @@ var pool = sync.Pool{
 
 func write(w io.Writer) {
 	buffer := pool.Get().([]byte)
-	buffer = buffer[:0]
+	buffer = buffer[:0] // reset buffer
 	defer pool.Put(buffer)
 
 	getResponse(buffer)

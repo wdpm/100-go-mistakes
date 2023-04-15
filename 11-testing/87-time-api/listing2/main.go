@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// dependency inject
 type now func() time.Time
 
 type Cache struct {
@@ -29,6 +30,7 @@ func (c *Cache) TrimOlderThan(since time.Duration) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
+	// 当前时间 + duration 偏移量 => 一个时间点，这里是获取这个时间点之后的events
 	t := time.Now().Add(-since)
 	for i := 0; i < len(c.events); i++ {
 		if c.events[i].Timestamp.After(t) {

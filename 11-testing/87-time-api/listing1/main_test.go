@@ -13,6 +13,8 @@ func TestCache_TrimOlderThan(t *testing.T) {
 	}
 	cache := &Cache{}
 	cache.Add(events)
+	// Such an approach has one main drawback: if the machine executing the test is sud-
+	// denly busy, we may trim fewer events than expected
 	cache.TrimOlderThan(15 * time.Millisecond)
 	got := cache.GetAll()
 	expected := 2
